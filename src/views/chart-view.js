@@ -34,7 +34,6 @@ class ChartView extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.covidData !== this.props.covidData) {
-      console.log(this.props.covidData);
       this.setState(
         { dates: this.props.covidData.CHN.date.slice().reverse() },
         () => {
@@ -57,7 +56,6 @@ class ChartView extends React.Component {
   };
 
   addToChartData = country => {
-    console.log(country);
     var chartData = this.state.data;
     var cc = country.split("(");
     var iso = cc[1].substring(0, cc[1].length - 1);

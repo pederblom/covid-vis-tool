@@ -1,5 +1,4 @@
 import regression from "regression";
-// import { interpolateNumberArray } from "d3-interpolate";
 
 const Predict = (data, method) => {
   var regData = [];
@@ -8,9 +7,6 @@ const Predict = (data, method) => {
     val = val >= 0 ? val : 0;
     regData.push([i, val]);
   }
-
-  console.log(regData);
-  //interpolate if null values
 
   let result;
   switch (method) {

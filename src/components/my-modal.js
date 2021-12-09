@@ -122,7 +122,6 @@ const MyModal = props => {
 
       chartData.push(d);
     }
-    console.log(chartData);
     if (chartNum == 1) setChartData1(chartData);
     else setChartData2(chartData);
   };
@@ -327,15 +326,6 @@ const MyModal = props => {
               </a>
             </td>
             <td rowSpan="5" colSpan="2">
-              {/* <Multiselect
-                isObject={false}
-                onRemove={() => selectAddRemove(2)}
-                onSearch={value => console.log(value)}
-                onSelect={() => selectAddRemove(2)}
-                options={allData}
-                selectedValues={chosenData}
-              /> */}
-
               <Chart
                 data={chartData1}
                 countries={[selData1]}

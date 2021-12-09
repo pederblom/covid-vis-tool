@@ -99,7 +99,6 @@ class MapView extends React.Component {
       var option = document.getElementById(filters[i]).value;
       if (value) f[filters[i]] = { option, value };
     }
-    console.log(f);
     this.setState({ filters: f });
   };
 

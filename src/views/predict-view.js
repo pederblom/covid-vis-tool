@@ -26,7 +26,6 @@ class PredictView extends React.Component {
     var selectedData = dataOptions[this.state.selData][this.state.selOption];
     var predData = this.props.covidData[this.state.country][selectedData];
     var prediction = Predict(predData, this.state.predMethod);
-    console.log(prediction);
     var predictor = prediction.predict;
     var predPoints = [];
     for (let i = 0; i < prediction.points.length; i++) {
@@ -74,7 +73,6 @@ class PredictView extends React.Component {
       max = max + 0.2 * max;
       domain = [min, max];
     }
-    console.log(data, prediction);
 
     return (
       <div className="predictView">

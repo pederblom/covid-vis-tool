@@ -70,8 +70,6 @@ const Chart = props => {
     });
   };
 
-  console.log(props.domain);
-
   return (
     <div>
       <chart.LineChart

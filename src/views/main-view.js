@@ -34,7 +34,7 @@ class MainView extends React.Component {
     return (
       <div>
         <div className="mainHeader">
-          <i class="fas fa-virus"></i> COVID DATA ANALYSIS{" "}
+          <i class="fas fa-virus"></i> COVID Data Analysis{" "}
           <i class="fas fa-virus"></i>
         </div>
         <div className="ViewSelector">

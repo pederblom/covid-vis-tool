@@ -12,19 +12,30 @@ class PredictView extends React.Component {
     super(props);
     this.state = {
       chartData: [],
-      country: "NOR",
+      country: "Norway",
       predMethod: "Linear",
       prediction: [],
       selData: "Cases",
       selOption: "Total",
-      predDays: 90
+      predDays: 90,
+      cuntISO: {}
     };
   }
+
+  componentDidMount = () => {
+    var countries = Object.keys(this.props.covidData);
+    var cName = {};
+    countries.forEach(c => (cName[this.props.covidData[c].location[0]] = c));
+    this.setState({ cuntISO: cName });
+  };
 
   predict = () => {
     var numOfDays = document.getElementById("predictDays").value;
     var selectedData = dataOptions[this.state.selData][this.state.selOption];
-    var predData = this.props.covidData[this.state.country][selectedData];
+    var predData =
+      this.props.covidData[this.state.cuntISO[this.state.country]][
+        selectedData
+      ];
     var prediction = Predict(predData, this.state.predMethod);
     var predictor = prediction.predict;
     var predPoints = [];
@@ -37,7 +48,8 @@ class PredictView extends React.Component {
     }
 
     var chartData = [];
-    var dates = this.props.covidData[this.state.country].date;
+    var dates =
+      this.props.covidData[this.state.cuntISO[this.state.country]].date;
     for (let i = 0; i < predPoints.length; i++) {
       var d = {};
       var date = new Date(dates[i]);
@@ -73,7 +85,6 @@ class PredictView extends React.Component {
       max = max + 0.2 * max;
       domain = [min, max];
     }
-
     return (
       <div className="predictView">
         <table className="statistics" id="dataDisplay">
@@ -93,7 +104,7 @@ class PredictView extends React.Component {
           <tr>
             <td>
               <Dropdown
-                options={Object.keys(this.props.covidData)}
+                options={Object.keys(this.state.cuntISO)}
                 value={this.state.country}
                 onChange={val => this.setState({ country: val.value })}
               />

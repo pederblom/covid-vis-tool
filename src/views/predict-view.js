@@ -24,6 +24,7 @@ class PredictView extends React.Component {
 
   componentDidMount = () => {
     var countries = Object.keys(this.props.covidData);
+    countries.pop();
     var cName = {};
     countries.forEach(c => (cName[this.props.covidData[c].location[0]] = c));
     this.setState({ cuntISO: cName });

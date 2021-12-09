@@ -70,6 +70,8 @@ const Chart = props => {
     });
   };
 
+  console.log(props.domain);
+
   return (
     <div>
       <chart.LineChart
@@ -84,7 +86,10 @@ const Chart = props => {
         <chart.CartesianGrid strokeDasharray="3 3" />
         {/* make this date format */}
         <chart.XAxis dataKey="date" />
-        <chart.YAxis />
+        <chart.YAxis
+          type="number"
+          domain={props.domain ? props.domain : [0, "auto"]}
+        />
         <chart.Tooltip />
         <chart.Legend />
 

@@ -41,7 +41,8 @@ const filters = [
   "contact",
   "gdp",
   "median_age",
-  "life_expectancy"
+  "life_expectancy",
+  "popdense"
 ];
 
 class MapView extends React.Component {
@@ -84,7 +85,7 @@ class MapView extends React.Component {
         id={type + "dropdown"}
         min={min}
         max={max}
-        style={{ width: "40px" }}
+        style={{ width: "50px" }}
       ></input>
     );
   };
@@ -202,7 +203,7 @@ class MapView extends React.Component {
                 </div>
               </div>
             </td>
-            <td rowSpan="10">
+            <td rowSpan="14" style={{ width: "80%" }}>
               <Map
                 covidData={this.props.covidData}
                 policyData={this.props.policyData}
@@ -348,11 +349,11 @@ class MapView extends React.Component {
             <td>
               <div className="filterColumn">
                 <div>
-                  <i class="fas fa-user-secret"></i> Contact tracing
+                  <i class="fas fa-sort-numeric-up-alt"></i> Median age
                 </div>
                 <div style={{ display: "flex" }}>
-                  {this.filterOptionDrop("contact")}
-                  {this.inputNumber(0, 2, "contact")}
+                  {this.filterOptionDrop("median_age")}
+                  {this.inputNumber(0, 100, "median_age")}
                 </div>
               </div>
             </td>
@@ -361,29 +362,40 @@ class MapView extends React.Component {
             <td>
               <div className="filterColumn">
                 <div>
-                  <i class="fas fa-user-secret"></i> Contact tracing
+                  <i class="fas fa-users"></i> Population density
                 </div>
                 <div style={{ display: "flex" }}>
-                  {this.filterOptionDrop("contact")}
-                  {this.inputNumber(0, 2, "contact")}
+                  {this.filterOptionDrop("popdense")}
+                  {this.inputNumber(0, 500, "popdense")}
                 </div>
               </div>
             </td>
           </tr>
           <tr>
-            <tr>
-              <td>
-                <div className="filterColumn">
-                  <div>
-                    <i class="fas fa-user-secret"></i> Contact tracing
-                  </div>
-                  <div style={{ display: "flex" }}>
-                    {this.filterOptionDrop("contact")}
-                    {this.inputNumber(0, 2, "contact")}
-                  </div>
+            <td>
+              <div className="filterColumn">
+                <div>
+                  <i class="fas fa-sort-numeric-up-alt"></i> Life expectancy
                 </div>
-              </td>
-            </tr>
+                <div style={{ display: "flex" }}>
+                  {this.filterOptionDrop("life_expectancy")}
+                  {this.inputNumber(0, 100, "life_expectancy")}
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div className="filterColumn">
+                <div>
+                  <i class="fas fa-dollar-sign"></i> GDP ($)
+                </div>
+                <div style={{ display: "flex" }}>
+                  {this.filterOptionDrop("gdp")}
+                  {this.inputNumber(0, 1000000, "gdp")}
+                </div>
+              </div>
+            </td>
             <td>
               <div
                 style={{

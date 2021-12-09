@@ -15,7 +15,6 @@ const Map = props => {
     var countries = Object.keys(props.covidData);
     var filters = Object.keys(props.filters);
     var filtered = Object.keys(props.covidData);
-    console.log(props.covidData.GRC);
     for (let i = 0; i < countries.length; i++) {
       for (let j = 0; j < filters.length; j++) {
         var c = countries[i];

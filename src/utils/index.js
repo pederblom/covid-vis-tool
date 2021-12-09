@@ -183,5 +183,9 @@ export const filterData = {
   trans: { arr: "C5_Close public transport", dataSet: "policyData" },
   home: { arr: "C6_Stay at home requirements", dataSet: "policyData" },
   testing: { arr: "H2_Testing policy", dataSet: "policyData" },
-  contact: { arr: "H3_Contact tracing", dataSet: "policyData" }
+  contact: { arr: "H3_Contact tracing", dataSet: "policyData" },
+  median_age: { arr: "median_age", dataSet: "covidData" },
+  life_expectancy: { arr: "life_expectancy", dataSet: "covidData" },
+  gdp: { arr: "gdp_per_capita", dataSet: "covidData" },
+  popdense: { arr: "population_density", dataSet: "covidData" }
 };

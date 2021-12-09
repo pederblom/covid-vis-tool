@@ -36,7 +36,6 @@ class PredictView extends React.Component {
     for (let i = 0; i < numOfDays; i++) {
       predPoints.push(predictor(predData.length + i)[1]);
     }
-    console.log(predPoints);
 
     var chartData = [];
     var dates = this.props.covidData[this.state.country].date;
@@ -46,7 +45,7 @@ class PredictView extends React.Component {
       if (dates[i]) d["date"] = date.toUTCString().substr(0, 16);
       else {
         date = new Date(dates[dates.length - 1]);
-        date.setDate(date.getDate() + (i - dates.length - 1));
+        date.setDate(date.getDate() + (i - dates.length + 1));
         d["date"] = date.toUTCString().substr(0, 16);
       }
       if (predData[i]) d[this.state.selData] = predData[i];
@@ -59,6 +58,22 @@ class PredictView extends React.Component {
   };
 
   render() {
+    var domain = [0, "auto"];
+    if (this.state.chartData.length > 0) {
+      var data = this.state.chartData.map(c =>
+        c[this.state.selData] ? c[this.state.selData] : 0
+      );
+      var prediction = this.state.chartData.map(c => c.Prediction);
+      var min = Math.min(data);
+      var max = Math.max(data);
+      var pMin = Math.min(prediction);
+      var pMax = Math.max(prediction);
+      if (max < pMax) max = pMax;
+      if (min > pMin) min = pMin;
+
+      domain = [min, max];
+    }
+
     return (
       <div className="predictView">
         <table className="statistics" id="dataDisplay">
@@ -143,6 +158,7 @@ class PredictView extends React.Component {
                 <Chart
                   data={this.state.chartData}
                   countries={[this.state.selData, "Prediction"]}
+                  domain={domain}
                   dimensions={{
                     width: window.innerWidth,
                     height: window.innerHeight - 300

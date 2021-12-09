@@ -2,16 +2,24 @@ import React, { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import Chart from "./chart";
 import Multiselect from "multiselect-react-dropdown";
-import { firstNotNull, policies, policyExplanation } from "../utils";
+import {
+  firstNotNull,
+  policies,
+  policyExplanation,
+  filterData,
+  dataOptions
+} from "../utils";
 import { interpolateRgbBasis } from "d3-interpolate";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
-const dataOptions = {
-  Vaccinations: "total_vaccinations",
-  Cases: "total_cases",
-  Deaths: "total_deaths",
-  Tests: "total_tests",
-  Boosters: "total_boosters"
-};
+// const dataOptions = {
+//   Vaccinations: "total_vaccinations",
+//   Cases: "total_cases",
+//   Deaths: "total_deaths",
+//   Tests: "total_tests",
+//   Boosters: "total_boosters"
+// };
 
 const allData = [
   "Cases",
@@ -22,16 +30,63 @@ const allData = [
   // Add more as wanted friend
 ];
 
+const dropData1 = {
+  Stringency: filterData.stringency,
+  "Face coverings": filterData.masks,
+  "School closing": filterData.schools,
+  "Workplace closing": filterData.work,
+  "Gathering restrictions": filterData.gather,
+  "Internal movement restrictions": filterData.internal,
+  "International movement restrictions": filterData.international,
+  "Close public transport": filterData.trans,
+  "Stay at home requirements": filterData.home,
+  "Testing policy": filterData.testing,
+  "Contact tracing": filterData.contact
+};
+
+const dropData2 = {
+  "Total cases": { arr: dataOptions.Cases.Total, dataSet: "covidData" },
+  "New cases": { arr: dataOptions.Cases.New, dataSet: "covidData" },
+  "Total vaccinations": {
+    arr: dataOptions.Vaccinations.Total,
+    dataSet: "covidData"
+  },
+  "New Vaccinations": {
+    arr: dataOptions.Vaccinations.New,
+    dataSet: "covidData"
+  },
+  "Total deaths": { arr: dataOptions.Deaths.Total, dataSet: "covidData" },
+  "New deaths": { arr: dataOptions.Deaths.New, dataSet: "covidData" },
+  "Total tests": { arr: dataOptions.Tests.Total, dataSet: "covidData" },
+  "New tests": { arr: dataOptions.Tests.New, dataSet: "covidData" },
+  "Total boosters": { arr: dataOptions.Boosters.Total, dataSet: "covidData" },
+  "New boosters": { arr: dataOptions.Boosters.New, dataSet: "covidData" }
+};
+
 const colorScaler = interpolateRgbBasis(["green", "yellow", "red"]);
 
 const MyModal = props => {
   const [toolText, setTool] = useState("");
-  const [chosenData, setChosenData] = useState(allData);
-  const [chartData, setChartData] = useState([]);
+  // const [chosenData, setChosenData] = useState(allData);
+  const [chartData1, setChartData1] = useState([]);
+  const [chartData2, setChartData2] = useState([]);
+  const [selData1, setSelData1] = useState("Stringency");
+  const [selData2, setSelData2] = useState("Total cases");
 
   useEffect(() => {
-    if (props.covidData) convertChartData();
-  }, [props.covidData, chosenData]);
+    if (props.covidData) {
+      convertChartData(1);
+      convertChartData(2);
+    }
+  }, [props.covidData]);
+
+  useEffect(() => {
+    if (props.covidData) convertChartData(1);
+  }, [selData1]);
+
+  useEffect(() => {
+    if (props.covidData) convertChartData(2);
+  }, [selData2]);
 
   const round = (num, dec) => {
     const facTen = Math.pow(10, dec);
@@ -48,28 +103,33 @@ const MyModal = props => {
     }
   };
 
-  const convertChartData = () => {
+  const convertChartData = chartNum => {
     var dates = props.covidData.date;
     var chartData = [];
+    var chosenData = selData1;
+    if (chartNum == 2) chosenData = selData2;
     for (var i = 0; i < dates.length; i++) {
       var d = {};
       var date = new Date(dates[i]);
       if (dates[i]) d["date"] = date.toUTCString().substr(0, 16);
-      for (var j = 0; j < chosenData.length; j++) {
-        var selectedDataOption = dataOptions[chosenData[j]];
-        var selData = props.covidData[selectedDataOption];
 
-        var val = parseFloat(selData[i]);
-        d[chosenData[j]] = val;
-      }
+      var sel = dropData1[selData1];
+      if (chartNum == 2) sel = dropData2[selData2];
+      var selData = props[sel.dataSet][sel.arr];
+
+      var val = parseFloat(selData[i]);
+      if (val) d[chosenData] = val;
+
       chartData.push(d);
     }
-    setChartData(chartData);
+    console.log(chartData);
+    if (chartNum == 1) setChartData1(chartData);
+    else setChartData2(chartData);
   };
 
-  const selectAddRemove = values => {
-    setChosenData(values);
-  };
+  // const selectAddRemove = values => {
+  //   setChosenData(values);
+  // };
 
   var covidData = props.covidData;
   var policyData = props.policyData;
@@ -210,7 +270,7 @@ const MyModal = props => {
             <th colSpan="2">
               <i class="fas fa-gavel"></i> COVID Policy
             </th>
-            <th>
+            <th colSpan="2">
               <i class="fas fa-chart-line"></i> COVID Data Visualization
             </th>
           </tr>
@@ -228,19 +288,13 @@ const MyModal = props => {
                 {stringency}
               </a>
             </td>
-            <td rowSpan="6">
-              <Multiselect
-                isObject={false}
-                onRemove={() => selectAddRemove(2)}
-                onSearch={value => console.log(value)}
-                onSelect={() => selectAddRemove(2)}
-                options={allData}
-                selectedValues={chosenData}
-              />
-              <Chart
-                data={chartData}
-                countries={chosenData}
-                dimensions={{ width: 1000, height: 180 }}
+            <th>Policy</th>
+            <td>
+              <Dropdown
+                style={{ height: 35 }}
+                options={Object.keys(dropData1)}
+                value={selData1}
+                onChange={val => setSelData1(val.value)}
               />
             </td>
           </tr>
@@ -271,6 +325,22 @@ const MyModal = props => {
               >
                 <i className="fas fa-head-side-mask"></i>
               </a>
+            </td>
+            <td rowSpan="5" colSpan="2">
+              {/* <Multiselect
+                isObject={false}
+                onRemove={() => selectAddRemove(2)}
+                onSearch={value => console.log(value)}
+                onSelect={() => selectAddRemove(2)}
+                options={allData}
+                selectedValues={chosenData}
+              /> */}
+
+              <Chart
+                data={chartData1}
+                countries={[selData1]}
+                dimensions={{ width: 1500, height: 175 }}
+              />
             </td>
           </tr>
           <tr>
@@ -423,19 +493,14 @@ const MyModal = props => {
                 <i class="fas fa-house-user"></i>
               </a>
             </td>
-            <td rowSpan="6">
-              <Multiselect
-                isObject={false}
-                onRemove={selectAddRemove}
-                onSearch={value => console.log(value)}
-                onSelect={selectAddRemove}
-                options={allData}
-                selectedValues={chosenData}
-              />
-              <Chart
-                data={chartData}
-                countries={chosenData}
-                dimensions={{ width: 1000, height: 180 }}
+            <td>
+              <th>COVID</th>
+            </td>
+            <td>
+              <Dropdown
+                options={Object.keys(dropData2)}
+                value={selData2}
+                onChange={val => setSelData2(val.value)}
               />
             </td>
           </tr>
@@ -469,6 +534,13 @@ const MyModal = props => {
               >
                 <i class="fas fa-route"></i>
               </a>
+            </td>
+            <td rowSpan="5" colSpan="2">
+              <Chart
+                data={chartData2}
+                countries={[selData2]}
+                dimensions={{ width: 1500, height: 175 }}
+              />
             </td>
           </tr>
           <tr>
@@ -617,50 +689,6 @@ const MyModal = props => {
             </td>
           </tr>
         </table>
-        {/* <div className="countryChart" style={{ width: "65%" }}>
-          <table className="policyTable" style={{ width: "100%" }}>
-            <tr>
-              <th>
-                <i class="fas fa-chart-line"></i> COVID Data Visualization
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <Multiselect
-                  isObject={false}
-                  onRemove={selectAddRemove}
-                  onSearch={value => console.log(value)}
-                  onSelect={selectAddRemove}
-                  options={allData}
-                  selectedValues={chosenData}
-                />
-                <Chart
-                  data={chartData}
-                  countries={chosenData}
-                  dimensions={{ width: 1000, height: 180 }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Multiselect
-                  isObject={false}
-                  onRemove={selectAddRemove}
-                  onSearch={value => console.log(value)}
-                  onSelect={selectAddRemove}
-                  options={allData}
-                  selectedValues={chosenData}
-                />
-                <Chart
-                  data={chartData}
-                  countries={chosenData}
-                  dimensions={{ width: 1000, height: 180 }}
-                />
-              </td>
-            </tr>
-          </table>
-        </div> */}
-
         <ReactTooltip html={true} place="right" id="tool">
           {toolText}
         </ReactTooltip>

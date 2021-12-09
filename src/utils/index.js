@@ -165,3 +165,23 @@ export const mapColors = type => {
       return { scale: colorScaler(200000, "#e88117"), max: 200000 };
   }
 };
+
+export const filterData = {
+  stringency: { arr: "stringency_index", dataSet: "covidData" },
+  masks: { arr: "H6_Facial Coverings", dataSet: "policyData" },
+  schools: { arr: "C1_School closing", dataSet: "policyData" },
+  work: { arr: "C2_Workplace closing", dataSet: "policyData" },
+  gather: { arr: "C4_Restrictions on gatherings", dataSet: "policyData" },
+  internal: {
+    arr: "C7_Restrictions on internal movement",
+    dataSet: "policyData"
+  },
+  international: {
+    arr: "C8_International travel controls",
+    dataSet: "policyData"
+  },
+  trans: { arr: "C5_Close public transport", dataSet: "policyData" },
+  home: { arr: "C6_Stay at home requirements", dataSet: "policyData" },
+  testing: { arr: "H2_Testing policy", dataSet: "policyData" },
+  contact: { arr: "H3_Contact tracing", dataSet: "policyData" }
+};

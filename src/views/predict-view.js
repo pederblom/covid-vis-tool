@@ -5,13 +5,7 @@ import "react-dropdown/style.css";
 import { dataOptions } from "../utils";
 import Chart from "../components/chart";
 
-const predictionMethods = [
-  "Linear",
-  "Polynomial",
-  "Exponential"
-  // "Logarithmic",
-  // "Power"
-];
+const predictionMethods = ["Linear", "Polynomial", "Exponential"];
 
 class PredictView extends React.Component {
   constructor(props) {
@@ -143,35 +137,6 @@ class PredictView extends React.Component {
               </button>
             </td>
           </tr>
-          {/* <div className="predick">
-                {/* <div style={{ fontSize: 20 }}> */}
-          {/* </div> */}
-          {/* <div style={{ display: "flex", alignItems: "flex-end" }}>
-                  <div>
-                    <span>Country</span>
-                   
-                  </div>
-                  <div>
-                    <span>Method</span>
-                    
-                  </div>
-                  <div>
-                    <span>Data</span>
-                    
-                  </div>
-                  <div>
-                    <span>Option</span>
-                    
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <span>Days</span>
-                   
-                  </div>
-                  
-                </div>
-              </div> */}{" "}
-          {/* </th> */}
-          {/* </tr> */}
           {this.state.chartData.length > 0 ? (
             <tr>
               <td colspan="6">

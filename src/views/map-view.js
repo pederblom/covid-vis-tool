@@ -38,7 +38,10 @@ const filters = [
   "trans",
   "home",
   "testing",
-  "contact"
+  "contact",
+  "gdp",
+  "median_age",
+  "life_expectancy"
 ];
 
 class MapView extends React.Component {
@@ -340,6 +343,47 @@ class MapView extends React.Component {
                 </div>
               </div>
             </td>
+          </tr>
+          <tr>
+            <td>
+              <div className="filterColumn">
+                <div>
+                  <i class="fas fa-user-secret"></i> Contact tracing
+                </div>
+                <div style={{ display: "flex" }}>
+                  {this.filterOptionDrop("contact")}
+                  {this.inputNumber(0, 2, "contact")}
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div className="filterColumn">
+                <div>
+                  <i class="fas fa-user-secret"></i> Contact tracing
+                </div>
+                <div style={{ display: "flex" }}>
+                  {this.filterOptionDrop("contact")}
+                  {this.inputNumber(0, 2, "contact")}
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <tr>
+              <td>
+                <div className="filterColumn">
+                  <div>
+                    <i class="fas fa-user-secret"></i> Contact tracing
+                  </div>
+                  <div style={{ display: "flex" }}>
+                    {this.filterOptionDrop("contact")}
+                    {this.inputNumber(0, 2, "contact")}
+                  </div>
+                </div>
+              </td>
+            </tr>
             <td>
               <div
                 style={{

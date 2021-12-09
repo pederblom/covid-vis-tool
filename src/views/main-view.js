@@ -34,7 +34,7 @@ class MainView extends React.Component {
     return (
       <div>
         <div className="mainHeader">
-          <i class="fas fa-virus"></i> COVID CURER 3000™{" "}
+          <i class="fas fa-virus"></i> COVID DATA ANALYSIS{" "}
           <i class="fas fa-virus"></i>
         </div>
         <div className="ViewSelector">
@@ -60,7 +60,25 @@ class MainView extends React.Component {
             Prediction
           </button>
         </div>
-        {this.state.selectedView == "Chart" ? (
+        {this.state.covidData && this.state.policyData ? (
+          <div>
+            {this.state.selectedView == "Chart" ? (
+              <ChartView covidData={this.state.covidData} />
+            ) : null}
+            {this.state.selectedView == "Map" ? (
+              <MapView
+                covidData={this.state.covidData}
+                policyData={this.state.policyData}
+              />
+            ) : null}
+            {this.state.selectedView == "Predict" ? (
+              <PredictView covidData={this.state.covidData} />
+            ) : null}
+          </div>
+        ) : (
+          <div className="loading">Loading data...</div>
+        )}
+        {/* {this.state.selectedView == "Chart" ? (
           <ChartView covidData={this.state.covidData} />
         ) : null}
         {this.state.selectedView == "Map" ? (
@@ -71,7 +89,7 @@ class MainView extends React.Component {
         ) : null}
         {this.state.selectedView == "Predict" ? (
           <PredictView covidData={this.state.covidData} />
-        ) : null}
+        ) : null} */}
       </div>
     );
   }

@@ -61,18 +61,20 @@ class PredictView extends React.Component {
     var domain = [0, "auto"];
     if (this.state.chartData.length > 0) {
       var data = this.state.chartData.map(c =>
-        c[this.state.selData] ? c[this.state.selData] : 0
+        parseInt(c[this.state.selData]) ? parseInt(c[this.state.selData]) : 0
       );
       var prediction = this.state.chartData.map(c => c.Prediction);
-      var min = Math.min(data);
-      var max = Math.max(data);
-      var pMin = Math.min(prediction);
-      var pMax = Math.max(prediction);
+      var min = Math.min(...data);
+      var max = Math.max(...data);
+      var pMin = Math.min(...prediction);
+      var pMax = Math.max(...prediction);
       if (max < pMax) max = pMax;
       if (min > pMin) min = pMin;
 
+      max = max + 0.2 * max;
       domain = [min, max];
     }
+    console.log(data, prediction);
 
     return (
       <div className="predictView">

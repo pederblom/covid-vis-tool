@@ -1,0 +1,51 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "d3-fetch": "^3.0.1",
+    "d3-interpolate": "^3.0.1",
+    "d3-scale": "^4.0.2",
+    "fs": "^0.0.1-security",
+    "multiselect-react-dropdown": "^2.0.7",
+    "papaparse": "^5.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
+    "react-modal": "^3.14.4",
+    "react-scripts": "4.0.3",
+    "react-simple-maps": "^2.3.0",
+    "react-tooltip": "^4.2.21",
+    "recharts": "^2.1.6",
+    "regression": "^2.0.1",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && node node_modules/react-scripts/scripts/start.js",
+    "build": "/node_modules/react-scripts build",
+    "test": "/node_modules/react-scripts test",
+    "eject": "/node_modules/react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

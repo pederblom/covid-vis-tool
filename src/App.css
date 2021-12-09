@@ -1,0 +1,282 @@
+.App {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: whitesmoke;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ViewSelector {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+.MultiSelect {
+  width: 50%;
+  text-align: left;
+  /* background-color: #bebebe; */
+}
+
+.SelectionTitle {
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.SelectionContainer {
+  display: flex;
+}
+
+.DataSelect {
+  width: 50%;
+  text-align: left;
+  display: flex;
+}
+
+.Dropdown {
+  width: 49%;
+}
+
+.search-wrapper.searchWrapper {
+  height: 44px;
+  overflow: auto;
+  font-size: 14px;
+  background-color: white;
+}
+
+.Dropdown-control {
+  height: 44px;
+}
+
+.viewButton:hover,
+.dataButton:hover,
+.tab:hover {
+  cursor: pointer;
+}
+
+.dataOptionsMap {
+  /* padding-top: 15px; */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.dropdowner {
+  width: 50%;
+  text-align: left;
+  padding-left: 2px;
+  /* color: #70a7fa8f; */
+}
+
+#dataDisplay {
+  padding-top: 10px;
+}
+
+/* CSS */
+.viewButton,
+.dataButton,
+.tab {
+  align-items: center;
+  background-color: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.tab {
+  width: 33%;
+  background-color: white;
+  border-bottom: 1px solid #9c9292;
+  /* background-color: #9c9292;
+  color: white; */
+}
+
+.viewButton {
+  font-size: 30px;
+}
+
+.dataButton {
+  font-size: 20px;
+}
+
+.viewButton:hover,
+/* .viewButton:focus, */
+.dataButton:hover,
+.dataButton:focus, 
+.tab:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.viewButton:hover,
+.dataButton:hover {
+  transform: translateY(-1px);
+}
+
+/* .viewButton:active,
+.dataButton:active {
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+} */
+.statContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.statistics {
+  width: 100%;
+}
+
+.mainHeader {
+  background-color: white;
+  /* color: white; */
+  font-size: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* border-bottom: 1px solid #9c9292; */
+}
+
+.statistics > tr > td {
+  border: 1px solid #c7c7c7;
+  text-align: left;
+  padding: 5px;
+  border-radius: 2px;
+  background-color: white;
+}
+.statistics > tr > th {
+  border: 1px solid #9c9292;
+  text-align: left;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.policyTable > tr > td {
+  border: 1px solid #c7c7c7;
+  text-align: left;
+  padding: 5px;
+  border-radius: 2px;
+  background-color: white;
+}
+.policyTable > tr > th {
+  border: 1px solid #969696;
+  text-align: left;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.icon {
+  text-align: center !important;
+  padding: 0px !important;
+  font-size: 22px !important;
+}
+
+.ReactModal__Content.ReactModal__Content--after-open {
+  background-color: whitesmoke !important;
+}
+
+.policyChart {
+  padding-top: 5px;
+  display: flex;
+}
+
+.cuntTitle {
+  font-size: 50px;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.mapContainer {
+  width: 75%;
+  height: 300px;
+}
+
+.mapViewContainer {
+  display: flex;
+}
+
+.filterContainer {
+  width: 25%;
+}
+
+.smallDrop {
+  height: 20px;
+  font-size: 10px;
+  width: 40px;
+}
+
+.filterColumn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.predick {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

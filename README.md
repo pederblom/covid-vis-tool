@@ -9,6 +9,9 @@ Then, when all packages have been downloaded, run "npm start" and the applicatio
 ## Data sources:
 
 The tool uses two public datasets, which are imported at application start.
+
 The data are imported as csv files and processed into json format. The sources for these data are:
+
 Our World in Data: https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
+
 Oxford: https://github.com/OxCGRT/covid-policy-tracker/blob/master/data/OxCGRT_latest.csv (which are a result of the research project: https://www.bsg.ox.ac.uk/research/research-projects/covid-19-government-response-tracker)

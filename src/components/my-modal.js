@@ -59,8 +59,7 @@ const dropData2 = {
   "New deaths": { arr: dataOptions.Deaths.New, dataSet: "covidData" },
   "Total tests": { arr: dataOptions.Tests.Total, dataSet: "covidData" },
   "New tests": { arr: dataOptions.Tests.New, dataSet: "covidData" },
-  "Total boosters": { arr: dataOptions.Boosters.Total, dataSet: "covidData" },
-  "New boosters": { arr: dataOptions.Boosters.New, dataSet: "covidData" }
+  "Total boosters": { arr: dataOptions.Boosters.Total, dataSet: "covidData" }
 };
 
 const colorScaler = interpolateRgbBasis(["green", "yellow", "red"]);
